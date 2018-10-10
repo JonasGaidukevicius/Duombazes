@@ -1,0 +1,142 @@
+2018-10-10 11:07:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * EMPLOYEES[*]"; SQL statement:
+SELECT * EMPLOYEES [42000-197]
+2018-10-10 11:14:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                          
+                                   
+                                                     
+                                      
+SELECT * EMPLOYEES[*]  WHERE CITY='Seattle' "; SQL statement:
+//SELECT * FROM EMPLOYEES 
+//SELECT EMPLOYEEID FROM EMPLOYEES 
+//SELECT LASTNAME , FIRSTNAME ,TITLE  FROM EMPLOYEES 
+//SELECT DISTINCT CITY FROM EMPLOYEES 
+SELECT * EMPLOYEES  WHERE CITY='Seattle' [42000-197]
+2018-10-10 11:16:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                          
+                                   
+                                                     
+                                      
+                                               
+SELECT TITLE FROM EMPLOYEES FIRSTNAME =[*] 'Andrew' "; SQL statement:
+//SELECT * FROM EMPLOYEES 
+//SELECT EMPLOYEEID FROM EMPLOYEES 
+//SELECT LASTNAME , FIRSTNAME ,TITLE  FROM EMPLOYEES 
+//SELECT DISTINCT CITY FROM EMPLOYEES 
+//SELECT * FROM EMPLOYEES  WHERE CITY='Seattle'
+SELECT TITLE FROM EMPLOYEES FIRSTNAME = 'Andrew' [42000-197]
+2018-10-10 11:28:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                          
+                                   
+                                                     
+                                      
+                                               
+                                                        
+                                                      
+                                                              
+                                                                                                    
+INSERT INTO EMPLOYEES VALUES (10, 'Jonas', 'Jonauskas', 'Programuotojas', 'Mrs.', '1970.01.01', '2018.01.01', 'Žalgirio g. 15', 'Vilnius', 'LT', '01010', 'Lietuva', '(370) 683-99999', '2222', 'Pastabų nėra', 1, 'http://tinklalapis.lt/nuotraukos/nuotrauka.png' [*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+//SELECT * FROM EMPLOYEES 
+//SELECT EMPLOYEEID FROM EMPLOYEES 
+//SELECT LASTNAME , FIRSTNAME ,TITLE  FROM EMPLOYEES 
+//SELECT DISTINCT CITY FROM EMPLOYEES 
+//SELECT * FROM EMPLOYEES  WHERE CITY='Seattle'
+//SELECT TITLE FROM EMPLOYEES WHERE FIRSTNAME = 'Andrew'
+//SELECT * FROM EMPLOYEES WHERE BIRTHDATE='1963-07-02'
+//SELECT FIRSTNAME FROM EMPLOYEES WHERE LASTNAME = 'Leverling'
+//SELECT FIRSTNAME , LASTNAME  FROM EMPLOYEES WHERE TITLE ='Sales Representative' AND COUNTRY ='USA'
+INSERT INTO EMPLOYEES VALUES (10, 'Jonas', 'Jonauskas', 'Programuotojas', 'Mrs.', '1970.01.01', '2018.01.01', 'Žalgirio g. 15', 'Vilnius', 'LT', '01010', 'Lietuva', '(370) 683-99999', '2222', 'Pastabų nėra', 1, 'http://tinklalapis.lt/nuotraukos/nuotrauka.png' [42001-197]
+2018-10-10 11:30:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                          
+                                   
+                                                     
+                                      
+                                               
+                                                        
+                                                      
+                                                              
+                                                                                                    
+INSERT INTO EMPLOYEES VALUES (10, 'Jonas', 'Jonauskas', 'Programuotojas', 'Mrs.', '1970.01.01', '2018-01-01', 'Žalgirio g. 15', 'Vilnius', 'LT', '01010', 'Lietuva', '(370) 683-99999', '2222', 'Pastabų nėra', 1, 'http://tinklalapis.lt/nuotraukos/nuotrauka.png' [*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+//SELECT * FROM EMPLOYEES 
+//SELECT EMPLOYEEID FROM EMPLOYEES 
+//SELECT LASTNAME , FIRSTNAME ,TITLE  FROM EMPLOYEES 
+//SELECT DISTINCT CITY FROM EMPLOYEES 
+//SELECT * FROM EMPLOYEES  WHERE CITY='Seattle'
+//SELECT TITLE FROM EMPLOYEES WHERE FIRSTNAME = 'Andrew'
+//SELECT * FROM EMPLOYEES WHERE BIRTHDATE='1963-07-02'
+//SELECT FIRSTNAME FROM EMPLOYEES WHERE LASTNAME = 'Leverling'
+//SELECT FIRSTNAME , LASTNAME  FROM EMPLOYEES WHERE TITLE ='Sales Representative' AND COUNTRY ='USA'
+INSERT INTO EMPLOYEES VALUES (10, 'Jonas', 'Jonauskas', 'Programuotojas', 'Mrs.', '1970.01.01', '2018-01-01', 'Žalgirio g. 15', 'Vilnius', 'LT', '01010', 'Lietuva', '(370) 683-99999', '2222', 'Pastabų nėra', 1, 'http://tinklalapis.lt/nuotraukos/nuotrauka.png' [42001-197]
+2018-10-10 11:31:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "1970.01.01"; SQL statement:
+//SELECT * FROM EMPLOYEES 
+//SELECT EMPLOYEEID FROM EMPLOYEES 
+//SELECT LASTNAME , FIRSTNAME ,TITLE  FROM EMPLOYEES 
+//SELECT DISTINCT CITY FROM EMPLOYEES 
+//SELECT * FROM EMPLOYEES  WHERE CITY='Seattle'
+//SELECT TITLE FROM EMPLOYEES WHERE FIRSTNAME = 'Andrew'
+//SELECT * FROM EMPLOYEES WHERE BIRTHDATE='1963-07-02'
+//SELECT FIRSTNAME FROM EMPLOYEES WHERE LASTNAME = 'Leverling'
+//SELECT FIRSTNAME , LASTNAME  FROM EMPLOYEES WHERE TITLE ='Sales Representative' AND COUNTRY ='USA'
+INSERT INTO EMPLOYEES VALUES (10, 'Jonas', 'Jonauskas', 'Programuotojas', 'Mrs.', '1970.01.01', '2018-01-01', 'Žalgirio g. 15', 'Vilnius', 'LT', '01010', 'Lietuva', '(370) 683-99999', '2222', 'Pastabų nėra', 1, 'http://tinklalapis.lt/nuotraukos/nuotrauka.png') -- (10, 'Jonas', 'Jonauskas', 'Programuotojas', 'Mrs.', '1970.01.01', '2018-01-01', STRINGDECODE('\u017dalgirio g. 15'), 'Vilnius', 'LT', '01010', 'Lietuva', '(370) 683-99999', '2222', STRINGDECODE('Pastab\u0173 n\u0117ra'), 1, 'http://tinklalapis.lt/nuotraukos/nuotrauka.png') [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:166)
+	at org.h2.command.dml.Insert.update(Insert.java:134)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+Caused by: java.lang.IllegalArgumentException: 1970.01.01
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+2018-10-10 11:50:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "EMPLOYEEID" not found; SQL statement:
+//SELECT * FROM EMPLOYEES 
+//SELECT EMPLOYEEID FROM EMPLOYEES 
+//SELECT LASTNAME , FIRSTNAME ,TITLE  FROM EMPLOYEES 
+//SELECT DISTINCT CITY FROM EMPLOYEES 
+//SELECT * FROM EMPLOYEES  WHERE CITY='Seattle'
+//SELECT TITLE FROM EMPLOYEES WHERE FIRSTNAME = 'Andrew'
+//SELECT * FROM EMPLOYEES WHERE BIRTHDATE='1963-07-02'
+//SELECT FIRSTNAME FROM EMPLOYEES WHERE LASTNAME = 'Leverling'
+//SELECT FIRSTNAME , LASTNAME  FROM EMPLOYEES WHERE TITLE ='Sales Representative' AND COUNTRY ='USA'
+//INSERT INTO EMPLOYEES VALUES (10, 'Jonas', 'Jonauskas', 'Programuotojas', 'Mrs.', '1970-01-01', '2018-01-01', 'Žalgirio g. 15', 'Vilnius', 'LT', '01010', 'Lietuva', '(370) 683-99999', '2222', 'Pastabų nėra', 1, 'http://tinklalapis.lt/nuotraukos/nuotrauka.png')
+//INSERT INTO EMPLOYEES (EMPLOYEEID , FIRSTNAME , LASTNAME) VALUES (11, 'Petras', 'Petrauskas')
+//UPDATE EMPLOYEES  SET TITLE ='Bajoras', TITLEOFCOURTESY ='Mr.', BIRTHDATE ='1972-01-01', HIREDATE ='2018-10-01', ADDRESS ='Liepų 16', CITY ='Vilnius', REGION ='LT', POSTALCODE ='2222', COUNTRY ='Lietuva', HOMEPHONE ='(370)698-25255', EXTENSION ='45', NOTES ='Pastaba', REPORTSTO =2, PHOTOPATH ='http://linkas.lt/pav/nuotrauka.jpg' WHERE FIRSTNAME ='Petras'
+//DELETE FROM EMPLOYEES WHERE EMPLOYEEID =11
+//INSERT INTO EMPLOYEES (EMPLOYEEID , FIRSTNAME , LASTNAME , TITLE ) VALUES (11, 'Antanas', 'Antanaitis', 'Sales Manager' ), (12, 'Kazys', 'Antanaitis', 'Sales Manager' )
+UPDATE EMPLOYEEID SET TITLE='Sales Representative' WHERE LASTNAME ='Antanaitis' [42102-197]
+2018-10-10 12:04:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                         
+                                                         
+                                                                              
+SELECT PRODUCTNAME FROM PRODUCTS  WHERE DISCONTINUED =1 OR UNITSINSTOCK =0 AND UNITSONORDER =0
+SELECT[*] PRODUCTNAME FROM PRODUCTS  WHERE DISCONTINUED =1 OR (UNITSINSTOCK =0 AND UNITSONORDER =0) "; SQL statement:
+//SELECT * FROM PRODUCTS 
+//SELECT PRODUCTNAME FROM PRODUCTS WHERE DISCONTINUED = 1
+//SELECT PRODUCTNAME  FROM PRODUCTS WHERE UNITSINSTOCK > 0 AND DISCONTINUED =0
+SELECT PRODUCTNAME FROM PRODUCTS  WHERE DISCONTINUED =1 OR UNITSINSTOCK =0 AND UNITSONORDER =0
+SELECT PRODUCTNAME FROM PRODUCTS  WHERE DISCONTINUED =1 OR (UNITSINSTOCK =0 AND UNITSONORDER =0) [42000-197]
+2018-10-10 12:09:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                         
+                                                         
+                                                                              
+SELECT PRODUCTNAME FROM PRODUCTS  WHERE DISCONTINUED =1 OR UNITSINSTOCK =0 AND UNITSONORDER =0
+SELECT[*] PRODUCTNAME FROM PRODUCTS  WHERE DISCONTINUED =1 OR (UNITSINSTOCK =0 AND UNITSONORDER =0) "; SQL statement:
+//SELECT * FROM PRODUCTS 
+//SELECT PRODUCTNAME FROM PRODUCTS WHERE DISCONTINUED = 1
+//SELECT PRODUCTNAME  FROM PRODUCTS WHERE UNITSINSTOCK = 0 AND DISCONTINUED =0
+SELECT PRODUCTNAME FROM PRODUCTS  WHERE DISCONTINUED =1 OR UNITSINSTOCK =0 AND UNITSONORDER =0
+SELECT PRODUCTNAME FROM PRODUCTS  WHERE DISCONTINUED =1 OR (UNITSINSTOCK =0 AND UNITSONORDER =0) [42000-197]
