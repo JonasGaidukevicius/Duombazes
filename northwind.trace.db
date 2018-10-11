@@ -857,3 +857,392 @@ ORDER BY ORDERID , PRODUCTID , UNITPRICE *QUANTITY*(1-DISCOUNT  ) [90053-197]
 	at org.h2.server.web.WebThread.process(WebThread.java:165)
 	at org.h2.server.web.WebThread.run(WebThread.java:90)
 	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 14:30:11 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Scalar subquery contains more than one row; SQL statement:
+SELECT DISTINCT ORDERID , PRODUCTID , UNITPRICE *QUANTITY*(1-DISCOUNT  ) 
+FROM ORDER_DETAILS 
+WHERE UNITPRICE *QUANTITY*(1-DISCOUNT ) > 
+(SELECT ORDERID, MAX(UNITPRICE *QUANTITY*(1-DISCOUNT  ) )
+FROM ORDER_DETAILS 
+GROUP BY ORDERID )
+GROUP BY ORDERID , PRODUCTID , UNITPRICE *QUANTITY*(1-DISCOUNT  ) 
+
+//SELECT ORDERID, MAX(UNITPRICE *QUANTITY*(1-DISCOUNT  ) )
+//FROM ORDER_DETAILS 
+//GROUP BY ORDERID [90053-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.expression.Subquery.getValue(Subquery.java:48)
+	at org.h2.expression.Comparison.getValue(Comparison.java:259)
+	at org.h2.expression.Expression.getBooleanValue(Expression.java:178)
+	at org.h2.command.dml.Select.isConditionMet(Select.java:312)
+	at org.h2.command.dml.Select.queryGroup(Select.java:325)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 14:30:47 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Scalar subquery contains more than one row; SQL statement:
+SELECT DISTINCT ORDERID , PRODUCTID , UNITPRICE *QUANTITY*(1-DISCOUNT  ) 
+FROM ORDER_DETAILS 
+WHERE UNITPRICE *QUANTITY*(1-DISCOUNT ) > (SELECT ORDERID, MAX(UNITPRICE *QUANTITY*(1-DISCOUNT  ) ) FROM ORDER_DETAILS GROUP BY ORDERID )
+GROUP BY ORDERID , PRODUCTID , UNITPRICE *QUANTITY*(1-DISCOUNT  ) [90053-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.expression.Subquery.getValue(Subquery.java:48)
+	at org.h2.expression.Comparison.getValue(Comparison.java:259)
+	at org.h2.expression.Expression.getBooleanValue(Expression.java:178)
+	at org.h2.command.dml.Select.isConditionMet(Select.java:312)
+	at org.h2.command.dml.Select.queryGroup(Select.java:325)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 14:38:20 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "PRODUCTID" must be in the GROUP BY list; SQL statement:
+SELECT MAX (INCOME), ORDERID , PRODUCTID  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+Group By ORDERID [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 14:39:33 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT MAX (INCOME), ORDERID ,  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+GROUP[*] BY ORDERID, PRODUCTID "; expected "USE, AS, (, USE, RIGHT, LEFT, FULL, INNER, JOIN, CROSS, NATURAL, ,, SELECT"; SQL statement:
+SELECT MAX (INCOME), ORDERID ,  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+Group By ORDERID, PRODUCTID [42001-197]
+2018-10-11 14:39:38 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT MAX (INCOME), ORDERID ,  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+GROUP[*] BY ORDERID, "; expected "USE, AS, (, USE, RIGHT, LEFT, FULL, INNER, JOIN, CROSS, NATURAL, ,, SELECT"; SQL statement:
+SELECT MAX (INCOME), ORDERID ,  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+Group By ORDERID, [42001-197]
+2018-10-11 14:40:53 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT ORDERID, PRODUCTID , MAX (INCOME),  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+GROUP[*] BY ORDERID , PRODUCTID "; expected "USE, AS, (, USE, RIGHT, LEFT, FULL, INNER, JOIN, CROSS, NATURAL, ,, SELECT"; SQL statement:
+SELECT ORDERID, PRODUCTID , MAX (INCOME),  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+Group By ORDERID , PRODUCTID [42001-197]
+2018-10-11 14:41:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT ORDERID, PRODUCTID , MAX (INCOME),  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+GROUP[*] BY ORDERID "; expected "USE, AS, (, USE, RIGHT, LEFT, FULL, INNER, JOIN, CROSS, NATURAL, ,, SELECT"; SQL statement:
+SELECT ORDERID, PRODUCTID , MAX (INCOME),  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+Group By ORDERID [42001-197]
+2018-10-11 14:41:03 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT ORDERID,  MAX (INCOME),  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+GROUP[*] BY ORDERID "; expected "USE, AS, (, USE, RIGHT, LEFT, FULL, INNER, JOIN, CROSS, NATURAL, ,, SELECT"; SQL statement:
+SELECT ORDERID,  MAX (INCOME),  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+Group By ORDERID [42001-197]
+2018-10-11 14:41:04 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT ORDERID,  MAX (INCOME),  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+GROUP[*] BY ORDERID "; expected "USE, AS, (, USE, RIGHT, LEFT, FULL, INNER, JOIN, CROSS, NATURAL, ,, SELECT"; SQL statement:
+SELECT ORDERID,  MAX (INCOME),  FROM (SELECT ORDERID, PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+Group By ORDERID [42001-197]
+2018-10-11 14:46:38 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "PRODUCTID" must be in the GROUP BY list; SQL statement:
+SELECT MAX (INCOME), ORDERID, PRODUCTID  FROM (SELECT ORDERID, PRODUCTID , (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+Group By ORDERID [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 14:47:27 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "PRODUCTID" not found; SQL statement:
+SELECT MAX (INCOME), ORDERID, PRODUCTID  FROM (SELECT ORDERID, (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID)
+Group By ORDERID, PRODUCTID [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.command.dml.Select.prepare(Select.java:858)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 14:47:58 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "ORDERID" not found; SQL statement:
+SELECT MAX (INCOME), ORDERID, PRODUCTID  FROM (SELECT PRODUCTID, (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY PRODUCTID )
+Group By ORDERID, PRODUCTID [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.command.dml.Select.prepare(Select.java:858)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 14:48:40 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "ORDERID" not found; SQL statement:
+SELECT MAX (INCOME), ORDERID, PRODUCTID  FROM (SELECT PRODUCTID, (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY PRODUCTID )
+GROUP BY ORDERID, PRODUCTID [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.command.dml.Select.prepare(Select.java:858)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 14:49:12 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "ORDERID" not found; SQL statement:
+SELECT MAX (INCOME), ORDERID, PRODUCTID  FROM (SELECT PRODUCTID, (UNITPRICE *QUANTITY ) AS INCOME FROM ORDER_DETAILS GROUP BY PRODUCTID )
+GROUP BY ORDERID, PRODUCTID [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.command.dml.Select.prepare(Select.java:858)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 14:49:58 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "ORDERID" not found; SQL statement:
+SELECT MAX (INCOME), ORDERID  FROM (SELECT PRODUCTID , SUM (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY PRODUCTID)
+Group By ORDERID [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.command.dml.Select.prepare(Select.java:858)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 14:50:55 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "UNITPRICE" must be in the GROUP BY list; SQL statement:
+SELECT MAX (INCOME), ORDERID  FROM (SELECT ORDERID,  (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID)
+Group By ORDERID [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.expression.Operation.updateAggregate(Operation.java:389)
+	at org.h2.expression.Alias.updateAggregate(Alias.java:87)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.index.ViewIndex.find(ViewIndex.java:288)
+	at org.h2.index.ViewIndex.find(ViewIndex.java:160)
+	at org.h2.index.BaseIndex.find(BaseIndex.java:130)
+	at org.h2.index.IndexCursor.find(IndexCursor.java:176)
+	at org.h2.table.TableFilter.next(TableFilter.java:471)
+	at org.h2.command.dml.Select.queryGroup(Select.java:323)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 14:52:28 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "PRODUCTID" must be in the GROUP BY list; SQL statement:
+SELECT ORDERID, PRODUCTID , UNITPRICE *QUANTITY AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 14:57:41 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "PRODUCTID" must be in the GROUP BY list; SQL statement:
+SELECT MAX (INCOME), PRODUCTID , ORDERID  FROM (SELECT ORDERID, PRODUCTID , (UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+Group By ORDERID [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-11 15:03:17 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT DITINCT MAX ([*]INCOME), PRODUCTID , ORDERID  FROM (SELECT ORDERID, PRODUCTID , SUM(UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+GROUP BY ORDERID, PRODUCTID "; SQL statement:
+SELECT DITINCT MAX (INCOME), PRODUCTID , ORDERID  FROM (SELECT ORDERID, PRODUCTID , SUM(UNITPRICE *QUANTITY ) AS INCOME
+FROM ORDER_DETAILS
+GROUP BY ORDERID, PRODUCTID)
+Group By ORDERID, PRODUCTID [42000-197]
