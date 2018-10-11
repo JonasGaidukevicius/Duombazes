@@ -42,3 +42,6 @@ select * DARBUOTOJAI [42000-197]
 2018-10-10 10:28:02 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * DARBUOTOJAI[*]"; SQL statement:
 SELECT * DARBUOTOJAI [42000-197]
+2018-10-10 19:11:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * DARBUOTOJAI[*]"; SQL statement:
+SELECT * DARBUOTOJAI [42000-197]
