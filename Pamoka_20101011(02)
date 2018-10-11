@@ -1,0 +1,187 @@
+Komanda BETWEEN ... AND ...
+SELECT *
+FROM DARBUOTOJAI
+WHERE GIMIMOMETAI BETWEEN '1980-01-01' AND '1989-12-31'
+
+*****************************************************************
+
+Komanda WHERE IN ()
+SELECT *
+FROM DARBUOTOJAI
+WHERE PROJEKTONUMERIS IN (1, 3)
+Išrenka reikšmes, kur projekto numeris yra 1 arba 3.
+
+Jeigu reikšmės yra tekstas, tai reikia rašyti viengubose kabutėse, pvz., ('Petras')
+
+*****************************************************************
+
+Komanda WHERE LIKE
+SELECT *
+FROM DARBUOTOJAI
+WHERE PAVARDE LIKE '__d%'
+Išrenka tuos, kurių pavardės 3 raidė yra 'd'.
+
+_ - vienas bet koks simbvilis
+% - bet kiek bet kokių simbolių
+
+SELECT *
+FROM DARBUOTOJAI
+WHERE DIRBANUO LIKE '%-11-%'
+Išrenka tuos, kas pradėjo dirbti nuo 11 mėnesio.
+
+*****************************************************************
+WHERE IS NULL
+
+SELECT *
+FROM DARBUOTOJAI
+WHERE VARDAS IS NULL
+
+Išrenka visus, kur vardas yra NULL.
+
+*****************************************************************
+ORDER BY
+SELECT *
+FROM DARBUOTOJAI
+ORDER BY PAVARDE DESC
+Išrikiuoja duomenis pagal pavardę atgaline abėcėlės tvarka.
+Jeigu reikia pagal kelis laukus rikiuoti, tai atskiriu juos kableliu.
+
+*****************************************************************
+GROUP BY
+
+SELECT COUNT (PROJEKTONUMERIS) 
+FROM DARBUOTOJAI
+Suskaičiuoja kiek yra įrašų pagal stulpelį.
+
+SELECT COUNT (PROJEKTONUMERIS), PROJEKTONUMERIS 
+FROM DARBUOTOJAI
+GROUP BY PROJEKTONUMERIS  
+Suskaičiuoja kiek kokių projektų yra ir pagal projekto ID irūšiuoja.
+
+SELECT COUNT(*) (PROJEKTONUMERIS), PROJEKTONUMERIS 
+FROM DARBUOTOJAI
+GROUP BY PROJEKTONUMERIS 
+* - skaičiuoja ir NULL eilutes
+
+*****************************************************************
+
+HAVING
+
+SELECT COUNT(*) (PROJEKTONUMERIS), PROJEKTONUMERIS 
+FROM DARBUOTOJAI
+GROUP BY PROJEKTONUMERIS
+HAVING COUNT(*)>4
+
+HAVING parodo tik tuos duomenis, kurie po grupavimo tenkina nurodytą sąlygą.
+
+*****************************************************************
+Kai noriu pavadinti kažkaip stulpelį, tai prie SELECT 'LAUKAS' rašau AS STULPELIS, kur STULPELIS yra mano sugalvotas tekstas.
+SELECT ORDERID, SUM (UNITPRICE*QUANITY) AS INCOME
+Tada stulpelį sandaugos rodys kaip INCOME.
+
+*****************************************************************
+
+//////////////
+///UŽDUOTIS///
+//////////////
+
+1.
+SELECT EMPLOYEEID , FIRSTNAME , LASTNAME 
+FROM EMPLOYEES 
+WHERE BIRTHDATE = '1952-02-19'
+
+2.
+SELECT *
+FROM EMPLOYEES 
+WHERE BIRTHDATE <= '1960-07-29'
+
+3.
+SELECT HIREDATE ,BIRTHDATE 
+FROM EMPLOYEES 
+WHERE HIREDATE  BETWEEN '1993-10-30' AND '2012-11-11';
+
+4.
+SELECT FIRSTNAME ,TITLE ,REPORTSTO 
+FROM EMPLOYEES 
+WHERE CITY  IN ('Sietle','London');
+
+5.
+SELECT CONTACTNAME, COMPANYNAME ,CUSTOMERID 
+FROM CUSTOMERS
+WHERE CITY LIKE 'Ma%';
+
+6.
+SELECT *
+FROM EMPLOYEES 
+WHERE BIRTHDATE LIKE '%-19';
+
+7.
+SELECT *
+FROM EMPLOYEES 
+WHERE TITLE LIKE '__l%';
+
+8.
+SELECT *
+FROM EMPLOYEES 
+WHERE TITLE IS NULL;
+
+9.
+SELECT FIRSTNAME ,LASTNAME ,HIREDATE ,TITLE 
+FROM EMPLOYEES 
+WHERE HIREDATE ='1993-10-17' AND TITLE = 'Sales Manager';
+
+10.
+SELECT FIRSTNAME ,LASTNAME ,TITLE , REPORTSTO 
+FROM EMPLOYEES 
+WHERE TITLE = 'Sales Representative' AND REPORTSTO  = 5;
+
+11.
+SELECT FIRSTNAME 
+FROM EMPLOYEES 
+WHERE FIRSTNAME NOT LIKE 'M%'
+
+12.
+SELECT FIRSTNAME , HIREDATE ,BIRTHDATE 
+FROM EMPLOYEES 
+WHERE HIREDATE  NOT BETWEEN '1992-08-07' AND '1994-03-04';
+
+13.
+SELECT FIRSTNAME , LASTNAME ,BIRTHDATE 
+FROM EMPLOYEES 
+ORDER BY BIRTHDATE 
+
+14.
+SELECT FIRSTNAME , LASTNAME ,BIRTHDATE 
+FROM EMPLOYEES 
+ORDER BY BIRTHDATE DESC
+
+15.
+SELECT MAX (BIRTHDATE), MIN (BIRTHDATE ) 
+FROM EMPLOYEES 
+
+16.
+SELECT CITY, COUNT (*)
+FROM CUSTOMERS 
+GROUP BY CITY 
+
+17.
+SELECT CITY, CONTACTTITLE , COUNT (CONTACTTITLE  )
+FROM CUSTOMERS 
+WHERE CONTACTTITLE = 'Accounting Manager'
+GROUP BY CITY, CONTACTTITLE ;
+
+18.
+SELECT CITY, CONTACTTITLE , COUNT (CONTACTTITLE  )
+FROM CUSTOMERS 
+WHERE CONTACTTITLE = 'Accounting Manager'
+GROUP BY CITY, CONTACTTITLE
+HAVING COUNT(CONTACTTITLE ) >= 2;
+
+Papildoma 1 iš Slack.
+SELECT ORDERID, SUM(UNITPRICE *QUANTITY*(1-DISCOUNT  ) )
+FROM ORDER_DETAILS 
+GROUP BY ORDERID 
+
+Papildoma 2 iš Slack.
+Ieškoti 
+
