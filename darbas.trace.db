@@ -1,0 +1,479 @@
+2018-10-17 09:23:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Unknown data type: "SMALINT"; SQL statement:
+CREATE TABLE Vykdytojai (Nr SMALINT, Pavarde VARCHAR(30), Kvalifikacija VARCHAR(20), Kategorija SMALLINT, Issilavinimas VARCHAR(20)) [50004-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:4400)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:4215)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:6662)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:6570)
+	at org.h2.command.Parser.parseCreate(Parser.java:4615)
+	at org.h2.command.Parser.parsePrepared(Parser.java:380)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 09:43:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT *VYKDYTOJAI[*]"; SQL statement:
+SELECT *VYKDYTOJAI [42000-197]
+2018-10-17 09:44:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO Vykdytojai (PAVARDE, KVALIFIKACIJA, KATEGORIJA, ISSILAVINIMAS) VALUES ('Gražulytė', 'Inžinierius', 1) [21002-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:306)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 09:57:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT ALL FROM PROJEKTAI[*]"; expected "., (, USE, AS, RIGHT, LEFT, FULL, INNER, JOIN, CROSS, NATURAL, ,, SELECT"; SQL statement:
+SELECT ALL FROM PROJEKTAI [42001-197]
+2018-10-17 10:09:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT PROJEKTAI .PAVADINIMAS
+FROM PROJEKTAI , VYKDYMAS , VYKDYTOJAI 
+WHERE VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+AND PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+AND VYKDYTOJAI .PAVARDE = 'Jonaitis'
+
+SELECT[*] VYKDYTOJAI .PAVARDE 
+FROM VYKDYMAS ,VYKDYTOJAI 
+WHERE VYKDYTOJAI .NR <> VYKDYMAS .VYKDYTOJAS 
+AND VYKDYTOJAI .PAVARDE = 'Antanaitis'"; SQL statement:
+SELECT PROJEKTAI .PAVADINIMAS
+FROM PROJEKTAI , VYKDYMAS , VYKDYTOJAI 
+WHERE VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+AND PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+AND VYKDYTOJAI .PAVARDE = 'Jonaitis'
+
+SELECT VYKDYTOJAI .PAVARDE 
+FROM VYKDYMAS ,VYKDYTOJAI 
+WHERE VYKDYTOJAI .NR <> VYKDYMAS .VYKDYTOJAS 
+AND VYKDYTOJAI .PAVARDE = 'Antanaitis' [42000-197]
+2018-10-17 10:27:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT *
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+ORDER BY PROJEKTAI .NR 
+HAVING[*] PROJEKTAI. NR = 1"; SQL statement:
+SELECT *
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+ORDER BY PROJEKTAI .NR 
+HAVING PROJEKTAI. NR = 1 [42000-197]
+2018-10-17 10:58:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT *
+FROM VYKDYTOJAI 
+
+ALTER TABLE[*] VYKDYTOJAI ADD VARDAS VARCHAR(20) "; SQL statement:
+SELECT *
+FROM VYKDYTOJAI 
+
+ALTER TABLE VYKDYTOJAI ADD Vardas VARCHAR(20) [42000-197]
+2018-10-17 11:04:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI ,VYKDYMAS ,PROJEKTAI 
+WHERE VYKDYTOJAI.NR = VYKDYMAS.VYKDYTOJAS 
+AND PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+WHERE[*] PROJEKTAI .NR = 2"; SQL statement:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI ,VYKDYMAS ,PROJEKTAI 
+WHERE VYKDYTOJAI.NR = VYKDYMAS.VYKDYTOJAS 
+AND PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+WHERE PROJEKTAI .NR = 2 [42000-197]
+2018-10-17 11:15:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "VYKDYTOJAI.STATUSAS" not found; SQL statement:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI ,VYKDYMAS ,PROJEKTAI 
+WHERE VYKDYTOJAI.NR = VYKDYMAS.VYKDYTOJAS 
+AND PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+AND VYKDYTOJAI .PAVARDE ='Grazulyte'
+AND VYKDYTOJAI .PAVARDE ='Onaityte'
+AND VYKDYTOJAI .STATUSAS = 'Vadovas' [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.expression.Comparison.optimize(Comparison.java:177)
+	at org.h2.expression.ConditionAndOr.optimize(ConditionAndOr.java:131)
+	at org.h2.command.dml.Select.prepare(Select.java:861)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 11:16:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "VYKDYTOJAI.STATUSAS" not found; SQL statement:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI ,VYKDYMAS ,PROJEKTAI 
+WHERE VYKDYTOJAI.NR = VYKDYMAS.VYKDYTOJAS 
+AND PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+AND VYKDYTOJAI .PAVARDE ='Grazulyte' 
+OR VYKDYTOJAI .PAVARDE ='Onaityte'
+AND VYKDYTOJAI .STATUSAS = 'Vadovas' [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.expression.Comparison.optimize(Comparison.java:177)
+	at org.h2.expression.ConditionAndOr.optimize(ConditionAndOr.java:131)
+	at org.h2.expression.ConditionAndOr.optimize(ConditionAndOr.java:131)
+	at org.h2.command.dml.Select.prepare(Select.java:861)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 11:17:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "VYKDYTOJAI.STATUSAS" not found; SQL statement:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI ,VYKDYMAS ,PROJEKTAI 
+WHERE VYKDYTOJAI.NR = VYKDYMAS.VYKDYTOJAS 
+AND PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+AND (VYKDYTOJAI .PAVARDE ='Grazulyte' OR VYKDYTOJAI .PAVARDE ='Onaityte')
+AND VYKDYTOJAI .STATUSAS = 'Vadovas' [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.expression.Comparison.optimize(Comparison.java:177)
+	at org.h2.expression.ConditionAndOr.optimize(ConditionAndOr.java:131)
+	at org.h2.command.dml.Select.prepare(Select.java:861)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 11:19:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "VYKDYTOJAI.STATUSAS" not found; SQL statement:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+WHERE VYKDYTOJAI .PAVARDE ='Grazulyte' OR VYKDYTOJAI .PAVARDE ='Onaityte'
+AND VYKDYTOJAI .STATUSAS = 'Vadovas' [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.expression.Comparison.optimize(Comparison.java:177)
+	at org.h2.expression.ConditionAndOr.optimize(ConditionAndOr.java:131)
+	at org.h2.expression.ConditionAndOr.optimize(ConditionAndOr.java:131)
+	at org.h2.expression.ConditionAndOr.optimize(ConditionAndOr.java:130)
+	at org.h2.command.dml.Select.prepare(Select.java:861)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 11:20:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "VYKDYTOJAI.STATUSAS" not found; SQL statement:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+WHERE 
+VYKDYTOJAI .STATUSAS = 'Vadovas' [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.expression.Comparison.optimize(Comparison.java:177)
+	at org.h2.expression.ConditionAndOr.optimize(ConditionAndOr.java:130)
+	at org.h2.command.dml.Select.prepare(Select.java:861)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 11:21:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "STATUSAS" not found; SQL statement:
+SELECT STATUSAS 
+FROMVYKDYTOJAI [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.expression.Alias.optimize(Alias.java:51)
+	at org.h2.command.dml.Select.prepare(Select.java:858)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 11:21:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "STATUSAS" not found; SQL statement:
+SELECT STATUSAS 
+FROM VYKDYTOJAI [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.command.dml.Select.prepare(Select.java:858)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 11:22:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+WHERE 
+VYKDYMAS  .STATUSAS = 'Vadovas'
+VYKDYTOJAI[*] .PAVARDE ='Grazulyte' OR VYKDYTOJAI .PAVARDE ='Onaityte'"; SQL statement:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+WHERE 
+VYKDYMAS  .STATUSAS = 'Vadovas'
+VYKDYTOJAI .PAVARDE ='Grazulyte' OR VYKDYTOJAI .PAVARDE ='Onaityte' [42000-197]
+2018-10-17 11:25:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT PROJEKTAI .PAVADINIMAS , COUNT VYKDYTOJAI .[*]NR 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS"; SQL statement:
+SELECT PROJEKTAI .PAVADINIMAS , COUNT VYKDYTOJAI .NR 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS [42000-197]
+2018-10-17 11:32:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "PROJEKTAI.PAVADINIMAS" must be in the GROUP BY list; SQL statement:
+SELECT PROJEKTAI .PAVADINIMAS , VYKDYTOJAI .NR 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+GROUP BY VYKDYTOJAI .NR [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 11:33:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "VYKDYTOJAI.NR" must be in the GROUP BY list; SQL statement:
+SELECT PROJEKTAI .PAVADINIMAS , VYKDYTOJAI .NR 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+GROUP BY PROJEKTAI .PAVADINIMAS [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 11:34:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "PROJEKTAI.PAVADINIMAS" must be in the GROUP BY list; SQL statement:
+SELECT PROJEKTAI .PAVADINIMAS , COUNT (VYKDYTOJAI .NR) 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 11:35:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT PROJEKTAI .PAVADINIMAS , COUNT (VYKDYTOJAI .NR) 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+GROUP BY PROJEKTAI .PAVADINIMAS
+WHERE[*] COUNT (VYKDYTOJAI .NR) < 4"; SQL statement:
+SELECT PROJEKTAI .PAVADINIMAS , COUNT (VYKDYTOJAI .NR) 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+GROUP BY PROJEKTAI .PAVADINIMAS
+WHERE COUNT (VYKDYTOJAI .NR) < 4 [42000-197]
+2018-10-17 11:43:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI .PAVARDE , VYKDYMAS .PROJEKTAS 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+WHER VYKDYMAS .STATUSAS <> [*]'Vadovas"; SQL statement:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI .PAVARDE , VYKDYMAS .PROJEKTAS 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+WHER VYKDYMAS .STATUSAS <> 'Vadovas [42000-197]
+2018-10-17 11:43:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI .PAVARDE , VYKDYMAS .PROJEKTAS 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+WHER[*] VYKDYMAS .STATUSAS <> 'Vadovas'"; SQL statement:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI .PAVARDE , VYKDYMAS .PROJEKTAS 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+WHER VYKDYMAS .STATUSAS <> 'Vadovas' [42000-197]
+2018-10-17 11:44:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "PROJEKTAS.PAVADINIMAS" not found; SQL statement:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI .PAVARDE , PROJEKTAS .PAVADINIMAS 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.command.dml.Select.prepare(Select.java:858)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)

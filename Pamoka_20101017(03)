@@ -1,0 +1,252 @@
+Naujos lentelės kūrimas:
+------------------------
+CREATE TABLE Vykdytojai (Nr SMALLINT, Pavarde VARCHAR(30), Kvalifikacija VARCHAR(20), Kategorija SMALLINT, Issilavinimas VARCHAR(20));
+
+CREATE TABLE Projektai (Nr SMALLINT, Pavadinimas VARCHAR(30), Svarba VARCHAR(15), Pradzia DATE, Trukme SMALLINT);
+
+CREATE TABLE Vykdymas (Projektas SMALLINT, VYKDYTOJAS SMALLINT, Statusas VARCHAR(30), Valandos SMALLINT);
+
+Parašoma komanda CREATE TABLE, tada nurodomas lentelės pavadinimas, tada nuroidomi laukai su jų pavadinimais ir tipu.
+********************************************************
+Keitimas stulpelio:
+ALTER TABLE Vykdytojai ALTER  COLUMN Nr INT AUTO_INCREMENT;
+******************************************************
+Duomenų įterpimas:
+INSERT INTO Vykdytojai (PAVARDE, KVALIFIKACIJA, KATEGORIJA, ISSILAVINIMAS) VALUES ('Jonaitis', 'Informatikas', 2, 'VU');
+*************************************************
+Duomenų išrinkimas su sąlyga:
+---------------------------------
+SELECT PROJEKTAI .PAVADINIMAS
+FROM PROJEKTAI , VYKDYMAS , VYKDYTOJAI 
+WHERE VYKDYTOJAI.NR = VYKDYMAS.VYKDYTOJAS 
+AND PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+AND VYKDYTOJAI .PAVARDE = 'Jonaitis'
+
+Kad surišti laukus, tai parašau lentelės pavadinimą, tada dedu tašką ir rašau lauko pavadinimą.
+*************************************************************
+Kitas lentelių rišimo būdas yra su JOIN
+
+SELECT *
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+****************************************************************
+LEFT JOIN - prijungia duomenis iš kairės.
+RIGHT JOIN - prijungia iš dešinės
+
+SELECT *
+FROM VYKDYTOJAI  LEFT JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+LEFT JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS 
+****************************************************
+Kad sujungti lentelę su savimi, tai reikia abiem lentelėms suteikti naujus pavadinimus.
+Šiuo atveju viena lentelė yra 'A', o kita 'B'.
+ 
+SELECT A.PAVARDE , B.PAVARDE 
+FROM VYKDYTOJAI A JOIN VYKDYTOJAI B
+ON A.KVALIFIKACIJA = B.KVALIFIKACIJA
+WHERE A.NR > B.NR 
+
+********************
+****Užduotis 3******
+********************
+1.
+Naujo stulpelio įvedimas:
+ALTER TABLE VYKDYTOJAI ADD Vardas VARCHAR(20);
+
+Duomenų papildymas:
+UPDATE VYKDYTOJAI SET VARDAS ='Jonas' WHERE PAVARDE = 'Jonaitis';
+******************************************
+2.
+Išrenka Vardą, Pavardę ir projekto pavadinimą, prie kurio dirba:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI ,VYKDYMAS ,PROJEKTAI 
+WHERE VYKDYTOJAI.NR = VYKDYMAS.VYKDYTOJAS 
+AND PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+*************************************************
+3.
+Išrenka vardą, pavardę ir projekto pavadinimą, kur reikalingas tik konkretus projektas:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI ,VYKDYMAS ,PROJEKTAI 
+WHERE VYKDYTOJAI.NR = VYKDYMAS.VYKDYTOJAS 
+AND PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+AND PROJEKTAI .NR = 2
+***************************************************
+4.
+Išrenka vardą, pavardę ir projekto pavadinimą, kur yra konkretus projektas ir konkreti vykdytojo kvalifikacija:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI ,VYKDYMAS ,PROJEKTAI 
+WHERE VYKDYTOJAI.NR = VYKDYMAS.VYKDYTOJAS 
+AND PROJEKTAI .NR = VYKDYMAS .PROJEKTAS 
+AND PROJEKTAI .NR = 1
+AND VYKDYTOJAI .KVALIFIKACIJA = 'Informatikas'
+****************************************************
+5.
+Išrenka moteris, kurių statusas 'Vadovas' ir parodo vardą, pavardę ir projekto pavadinimą.
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI.PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+WHERE 
+VYKDYMAS  .STATUSAS = 'Vadovas'
+AND (VYKDYTOJAI .PAVARDE ='Onaityte' OR VYKDYTOJAI .PAVARDE ='Grazulyte')
+*****************************************************************
+6.
+Išrenka projekto pavadinimą ir parodo kiek darbuotojų dirba su tuo projektu:
+SELECT PROJEKTAI .PAVADINIMAS , COUNT (VYKDYTOJAI .NR) 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+GROUP BY PROJEKTAI .PAVADINIMAS
+***************************************************************
+7.
+Kaip 6 tik, apriboja, kad darbuotojų būtų nedaugiau kaip 3.
+SELECT PROJEKTAI .PAVADINIMAS , COUNT (VYKDYTOJAI .NR) 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+GROUP BY PROJEKTAI .PAVADINIMAS
+HAVING COUNT (VYKDYTOJAI .NR) < 4
+**************************************************************
+8.
+Parodo vardą, pavardę, projekto numerį, ten kur žmogus nėra vadovas.
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI .PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+WHERE VYKDYMAS .STATUSAS <> 'Vadovas'
+******************************************************
+9.
+Naujo vykdytojo įterpimas:
+INSERT INTO VYKDYTOJAI VALUES(6, 'Logis', NULL, NULL, NULL, 'Pranas')
+*****************************************************
+10.
+Parodo vardą, pavardę ir projektą. įtraukia net ir tuos, kurie nedalyvauja jokiame projekte:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI .PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI  LEFT JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+LEFT JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+*******************************************************
+11.
+Parodo vardą, pavardę ir projektą, kai yra programuootjas arba analitikas, o vykdymo valandos nemažiau 250, o projekto trukmė nemažiau 10:
+SELECT VYKDYTOJAI .VARDAS , VYKDYTOJAI .PAVARDE , PROJEKTAI .PAVADINIMAS 
+FROM VYKDYTOJAI  JOIN VYKDYMAS 
+ON VYKDYTOJAI .NR = VYKDYMAS .VYKDYTOJAS 
+JOIN PROJEKTAI 
+ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS
+WHERE (VYKDYMAS .STATUSAS = 'Programuotojas' OR VYKDYMAS. STATUSAS = 'Analitikas')
+AND VYKDYMAS. VALANDOS >= 250
+AND PROJEKTAI .TRUKME >= 10
+*******************************************************
+
+******************************
+******2017 metų egzaminas*****
+******************************
+1.
+Išrenka visus įrašus iš lentelės:
+SELECT *
+FROM IMONES 
+****************************************
+2.
+Suskaičiuoti kiek yra mokinių iš viso:
+SELECT COUNT (ID )
+FROM MOKINIAI  
+**********************************
+3.
+Išrenka visus mokinius moteris (atskiria pagal asmens kodą):
+SELECT VARDAS , PAVARDE , GIMIMO_DATA 
+FROM MOKINIAI  
+WHERE ASMENS_KODAS LIKE '4%'
+*************************************
+4.
+Išrenka duomenis, kur įmonės kodas turi konkrečias reikšmes (1 arba 3):
+SELECT ASMENS_KODAS , VARDAS , PAVARDE
+FROM MOKINIAI  
+WHERE IMONES_KODAS IN (1, 3)
+*****************************************
+5.
+Išrenka tuo mokinius, kurių ID nuo 4 iki 7 ir įmonės kodas nėra NULL:
+SELECT ID , VARDAS , IMONES_KODAS 
+FROM MOKINIAI  
+WHERE ID  BETWEEN 4 AND 7
+AND IMONES_KODAS IS NOT NULL
+**********************************************
+6.
+Išrenka visus duomenis, kai pavardės 4 raidė yra 'a':
+SELECT *
+FROM MOKINIAI  
+WHERE PAVARDE LIKE '___a%'
+Pastaba - čia yra 3 simboliai '_'
+*******************************************
+7.
+Parodo visus duomenis, išrikiuojant pagal įmonės kodą nuo didžiausio iki mažiausio:
+SELECT *
+FROM MOKINIAI  
+ORDER BY IMONES_KODAS DESC
+********************************************
+8.
+Išrenka mažiausią ir didžiausią pažymį:
+SELECT MIN(PAZYMYS ), MAX(PAZYMYS )
+FROM PAZYMIAI 
+*****************************************
+9.
+Išrenka Vardą, pavardę ir pažymių išviso skaičių:
+SELECT MOKINIAI .VARDAS , MOKINIAI. PAVARDE , COUNT(PAZYMIAI .PAZYMYS )
+FROM MOKINIAI JOIN PAZYMIAI 
+ON MOKINIAI .ID  = PAZYMIAI .MOKINIO_ID 
+GROUP BY MOKINIAI .VARDAS, MOKINIAI. PAVARDE ;
+*****************************************************
+10.
+Išrenka įmonės pavadinimą, kodą ir adresą ir bendrą priskirtų mokinių skaičių:
+SELECT IMONES .PAVADINIMAS , IMONES .ID , IMONES. ADRESAS, COUNT(MOKINIAI .ID )
+FROM IMONES JOIN MOKINIAI 
+ON IMONES .ID = MOKINIAI .IMONES_KODAS  
+GROUP BY IMONES .PAVADINIMAS , IMONES .ID , IMONES. ADRESAS;
+***********************************************
+11.
+Kaip 9, tik rodo tuos, kurie turi bent 2 pažymius:
+SELECT MOKINIAI .VARDAS , MOKINIAI. PAVARDE , COUNT(PAZYMIAI .PAZYMYS )
+FROM MOKINIAI JOIN PAZYMIAI 
+ON MOKINIAI .ID  = PAZYMIAI .MOKINIO_ID 
+GROUP BY MOKINIAI .VARDAS, MOKINIAI. PAVARDE 
+HAVING COUNT(PAZYMIAI .PAZYMYS ) >= 2;
+**************************************************
+12.
+
+ŠITAS NETEISINGAS!!!!!!
+REIKIA PERDARYTI.
+Yra vienas žmogus, kuris nelaikė vieno egzamino ir neturi už jį pažymio.
+
+Parodo vardą, pavardę, modulį ir tik tų, kurie turi pažymį mažiau už 7 arba visai nelaikė egzamino.
+SELECT MOKINIAI .VARDAS , MOKINIAI. PAVARDE , MOKINIAI .ASMENS_KODAS , MODULIAI .PAVADINIMAS 
+FROM MOKINIAI JOIN PAZYMIAI 
+ON MOKINIAI .ID  = PAZYMIAI .MOKINIO_ID 
+JOIN MODULIAI 
+ON MODULIAI .MODULIO_KODAS =PAZYMIAI .MODULIO_ID 
+WHERE PAZYMIAI .PAZYMYS <7 OR PAZYMIAI .PAZYMYS IS NULL;
+******************************************************
+13.
+Naujo mokinio įterpimas (kai yra suvedami visų stulpelių duomenys):
+INSERT INTO MOKINIAI VALUES (8, 38012310512, 'Naujas', 'Naujokaitis', '1980-12-31', 'Java programuotojas', 2)
+******************************************************
+14.
+Pakeičia 7 mokinio įmonės kodo reikšmę:
+UPDATE MOKINIAI SET IMONES_KODAS = 1
+WHERE ID = 7;
+************************************************
+15.
+Ištrina įrašą kur mokinio ID yra 8:
+DELETE MOKINIAI 
+WHERE ID = 8;
+*****************************************************
+
+
+
+

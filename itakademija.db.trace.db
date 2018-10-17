@@ -1,0 +1,158 @@
+2018-10-17 12:34:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Invalid use of aggregate function "MIN(PAZYMYS)"; SQL statement:
+SELECT *
+FROM PAZYMIAI 
+WHERE MIN(PAZYMYS ) OR MAX(PAZYMYS ) [90054-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.Aggregate.getValue(Aggregate.java:368)
+	at org.h2.expression.ConditionAndOr.getValue(ConditionAndOr.java:86)
+	at org.h2.expression.Expression.getBooleanValue(Expression.java:178)
+	at org.h2.command.dml.Select.isConditionMet(Select.java:312)
+	at org.h2.command.dml.Select.queryGroup(Select.java:325)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 12:41:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "MOKINIAI" not found; SQL statement:
+SELECT MOKINIAI .VARDAS , MOKINIAI PAVARDE , COUNT(PAZYMIAI .PAZYMYS )
+FROM MOKINIAI JOIN PAZYMIAI 
+ON MOKINIAI .ID  = PAZYMIAI .MOKINIO_ID [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.expression.Alias.optimize(Alias.java:51)
+	at org.h2.command.dml.Select.prepare(Select.java:858)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 12:41:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "MOKINIAI.VARDAS" must be in the GROUP BY list; SQL statement:
+SELECT MOKINIAI .VARDAS , MOKINIAI. PAVARDE , COUNT(PAZYMIAI .PAZYMYS )
+FROM MOKINIAI JOIN PAZYMIAI 
+ON MOKINIAI .ID  = PAZYMIAI .MOKINIO_ID [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 12:41:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "MOKINIAI.PAVARDE" must be in the GROUP BY list; SQL statement:
+SELECT MOKINIAI .VARDAS , MOKINIAI. PAVARDE , COUNT(PAZYMIAI .PAZYMYS )
+FROM MOKINIAI JOIN PAZYMIAI 
+ON MOKINIAI .ID  = PAZYMIAI .MOKINIO_ID 
+GROUP BY MOKINIAI .VARDAS [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-17 12:42:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT MOKINIAI .VARDAS , MOKINIAI. PAVARDE , COUNT(PAZYMIAI .PAZYMYS )
+FROM MOKINIAI JOIN PAZYMIAI 
+ON MOKINIAI .ID  = PAZYMIAI .MOKINIO_ID 
+GROUP BY MOKINIAI .VARDAS, MOKINIAI. PAVARDE 
+
+SELECT[*] *
+FROM PAZYMIAI"; SQL statement:
+SELECT MOKINIAI .VARDAS , MOKINIAI. PAVARDE , COUNT(PAZYMIAI .PAZYMYS )
+FROM MOKINIAI JOIN PAZYMIAI 
+ON MOKINIAI .ID  = PAZYMIAI .MOKINIO_ID 
+GROUP BY MOKINIAI .VARDAS, MOKINIAI. PAVARDE 
+
+SELECT *
+FROM PAZYMIAI [42000-197]
+2018-10-17 12:42:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT MOKINIAI .VARDAS , MOKINIAI. PAVARDE , COUNT(PAZYMIAI .PAZYMYS )
+FROM MOKINIAI JOIN PAZYMIAI 
+ON MOKINIAI .ID  = PAZYMIAI .MOKINIO_ID 
+GROUP BY MOKINIAI .VARDAS, MOKINIAI. PAVARDE 
+
+SELECT[*] *
+FROM PAZYMIAI"; SQL statement:
+SELECT MOKINIAI .VARDAS , MOKINIAI. PAVARDE , COUNT(PAZYMIAI .PAZYMYS )
+FROM MOKINIAI JOIN PAZYMIAI 
+ON MOKINIAI .ID  = PAZYMIAI .MOKINIO_ID 
+GROUP BY MOKINIAI .VARDAS, MOKINIAI. PAVARDE 
+
+SELECT *
+FROM PAZYMIAI [42000-197]
+2018-10-17 12:46:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "IMONES.PAVADINIMAS" must be in the GROUP BY list; SQL statement:
+SELECT IMONES .PAVADINIMAS , IMONES .ID , IMONES. ADRESAS, COUNT(MOKINIAI .ID )
+FROM IMONES JOIN MOKINIAI 
+ON IMONES .ID = MOKINIAI .IMONES_KODAS [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
