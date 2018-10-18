@@ -477,3 +477,61 @@ ON PROJEKTAI .NR  = VYKDYMAS .PROJEKTAS [42122-197]
 	at org.h2.server.web.WebThread.process(WebThread.java:165)
 	at org.h2.server.web.WebThread.run(WebThread.java:90)
 	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-18 09:09:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "NR" must not be nullable; SQL statement:
+ALTER TABLE VYKDYTOJAI ADD PRIMARY KEY (NR ) [90023-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.mvstore.db.MVTable.addIndex(MVTable.java:503)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:148)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:78)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-18 09:20:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Schema "INFORMATION_SHEMA" not found; SQL statement:
+SELECT *
+FROM INFORMATION_SHEMA.INFORMATION_SCHEMA.CONSTRAINTS [90079-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.getSchema(Parser.java:701)
+	at org.h2.command.Parser.getSchema(Parser.java:707)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1388)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:2138)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2287)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:2133)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:1946)
+	at org.h2.command.Parser.parseSelect(Parser.java:1919)
+	at org.h2.command.Parser.parsePrepared(Parser.java:463)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-18 09:21:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "INFORMATION_SCHEMA" not found; SQL statement:
+SELECT *
+FROM INFORMATION_SCHEMA.INFORMATION_SCHEMA.CONSTRAINTS [42102-197]
+2018-10-18 09:25:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE VYKDYMAS ADD FOREIGN KEY (PROJEKTAS )[*]"; expected "INDEX, REFERENCES"; SQL statement:
+ALTER TABLE VYKDYMAS ADD FOREIGN KEY (PROJEKTAS ) [42001-197]

@@ -1,0 +1,16 @@
+Pakoreguopja lauką ir nustato, kad ji negali įgyti NULL reikšmės:
+
+ALTER TABLE VYKDYTOJAI ALTER COLUMN NR INTEGER NOT NULL;
+-----------------------------------------------------------------
+Nustatau PRIMARY KEY ant nurodyto lauko:
+ALTER TABLE VYKDYTOJAI ADD PRIMARY KEY (NR );
+---------------------------------------------------------
+Kažkokia komanda pažiūrėti raktus:
+SELECT *
+FROM INFORMATION_SCHEMA.CONSTRAINTS 
+-----------------------------------------------
+Nustatau antrinį raktą - apriboju vienoje lentelėje lauko (PROJEKTAS)reikšmes, kad galėtų įgyti tik reikšmes iš nurodytos lentelės (PROJEKTAI) lauko (NR):
+ALTER TABLE VYKDYMAS ADD FOREIGN KEY (PROJEKTAS )
+REFERENCES PROJEKTAI (NR )
+---------------------------------------------
+
