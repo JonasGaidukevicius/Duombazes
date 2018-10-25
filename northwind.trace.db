@@ -1246,3 +1246,95 @@ SELECT DITINCT MAX (INCOME), PRODUCTID , ORDERID  FROM (SELECT ORDERID, PRODUCTI
 FROM ORDER_DETAILS
 GROUP BY ORDERID, PRODUCTID)
 Group By ORDERID, PRODUCTID [42000-197]
+2018-10-24 11:18:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * ORDERS[*]"; SQL statement:
+SELECT * ORDERS [42000-197]
+2018-10-24 11:22:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "France" not found; SQL statement:
+SELECT ORDERDATE , SHIPNAME 
+FROM ORDERS 
+WHERE SHIPCOUNTRY = "France" [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.expression.Comparison.optimize(Comparison.java:179)
+	at org.h2.command.dml.Select.prepare(Select.java:861)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-24 11:36:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "SHIPCOUNTRY" must be in the GROUP BY list; SQL statement:
+SELECT SHIPCOUNTRY , COUNT(PRODUCTID  )
+FROM ORDERS
+JOIN ORDER_DETAILS 
+ON ORDERS .ORDERID = ORDER_DETAILS .ORDERID [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-24 11:42:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * CATEGORIES[*]"; SQL statement:
+SELECT * CATEGORIES [42000-197]
+2018-10-24 12:06:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO PRODUCTS		
+VALUES (1000, 'Naujas produktas', 1, (SELECT CATEGORYID 
+FROM CATEGORIES 
+WHERE CATEGORYNAME ='Seafood'[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, GROUP, HAVING, UNION, MINUS, EXCEPT, INTERSECT, ORDER, OFFSET, FETCH, LIMIT, FOR, [, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO PRODUCTS		
+VALUES (1000, 'Naujas produktas', 1, (SELECT CATEGORYID 
+FROM CATEGORIES 
+WHERE CATEGORYNAME ='Seafood' [42001-197]
+2018-10-24 12:06:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement ")[*], '10 per deze', 55.0, 10, 15, 1, 0)"; SQL statement:
+), '10 per deze', 55.0, 10, 15, 1, 0) [42000-197]
+2018-10-24 12:40:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT PRODUCTS .PRODUCTNAME , PRODUCTS .UNITPRICE , ORDERS .ORDERID , ORDERS .CUSTOMERID 
+FROM (PRODUCTS JOIN ORDERS ) LEFT JOIN ORDER_DETAILS 
+ON ORDER_DETAILS .PRODUCTID  = PRODUCTS .PRODUCTID 
+AND ORDER_DETAILS .ORDERID = ORDERS .ORDERID 
+WHERE ORDER_DETAILS .ORDERID IS NULL
+GROUP PRODUCTS[*] .PRODUCTNAME"; expected "BY"; SQL statement:
+SELECT PRODUCTS .PRODUCTNAME , PRODUCTS .UNITPRICE , ORDERS .ORDERID , ORDERS .CUSTOMERID 
+FROM (PRODUCTS JOIN ORDERS ) LEFT JOIN ORDER_DETAILS 
+ON ORDER_DETAILS .PRODUCTID  = PRODUCTS .PRODUCTID 
+AND ORDER_DETAILS .ORDERID = ORDERS .ORDERID 
+WHERE ORDER_DETAILS .ORDERID IS NULL
+GROUP PRODUCTS .PRODUCTNAME [42001-197]
+2018-10-24 12:48:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT PRODUCTS .PRODUCTNAME , PRODUCTS .UNITPRICE , ORDERS .ORDERID , ORDERS .CUSTOMERID 
+FROM (PRODUCTS JOIN ORDERS ) LEFT JOIN ORDER_DETAILS 
+ON                                                   
+AND ORDER_DETAILS[*] .ORDERID = ORDERS .ORDERID 
+WHERE ORDER_DETAILS .ORDERID IS NULL "; SQL statement:
+SELECT PRODUCTS .PRODUCTNAME , PRODUCTS .UNITPRICE , ORDERS .ORDERID , ORDERS .CUSTOMERID 
+FROM (PRODUCTS JOIN ORDERS ) LEFT JOIN ORDER_DETAILS 
+ON //ORDER_DETAILS .PRODUCTID  = PRODUCTS .PRODUCTID 
+AND ORDER_DETAILS .ORDERID = ORDERS .ORDERID 
+WHERE ORDER_DETAILS .ORDERID IS NULL [42000-197]
