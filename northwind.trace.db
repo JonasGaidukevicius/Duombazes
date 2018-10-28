@@ -1338,3 +1338,60 @@ FROM (PRODUCTS JOIN ORDERS ) LEFT JOIN ORDER_DETAILS
 ON //ORDER_DETAILS .PRODUCTID  = PRODUCTS .PRODUCTID 
 AND ORDER_DETAILS .ORDERID = ORDERS .ORDERID 
 WHERE ORDER_DETAILS .ORDERID IS NULL [42000-197]
+2018-10-28 13:37:46 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT PRODUCTS.PRODUCTNAME, PRODUCTS.UNITPRICE, ORDER_DETAILS.ORDERID,  EMPLOYEES.LASTNAME
+FROM ORDER_DETAILS RIGHT JOIN PRODUCTS
+ON PRODUCTS.PRODUCTID = ORDER_DETAILS.PRODUCTID
+LEFT JOIN ORDER[*]
+ON ORDERS.ORDERID = ORDER_DETILS.ORDERID
+LEFT JOIN EMPLOYEES
+ON EMPLOYEES.EMPLOYEEID = ORDERS.EMPLOYEEID
+ORDER BY PRODUCTS.PRODUCTID DESC"; expected "identifier"; SQL statement:
+SELECT PRODUCTS.PRODUCTNAME, PRODUCTS.UNITPRICE, ORDER_DETAILS.ORDERID,  EMPLOYEES.LASTNAME
+FROM ORDER_DETAILS RIGHT JOIN PRODUCTS
+ON PRODUCTS.PRODUCTID = ORDER_DETAILS.PRODUCTID
+LEFT JOIN ORDER
+ON ORDERS.ORDERID = ORDER_DETILS.ORDERID
+LEFT JOIN EMPLOYEES
+ON EMPLOYEES.EMPLOYEEID = ORDERS.EMPLOYEEID
+ORDER BY PRODUCTS.PRODUCTID DESC [42001-197]
+2018-10-28 13:39:43 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Column "ORDER_DETILS.ORDERID" not found; SQL statement:
+SELECT PRODUCTS.PRODUCTNAME, PRODUCTS.UNITPRICE, ORDER_DETAILS.ORDERID,  EMPLOYEES.LASTNAME
+FROM ORDER_DETAILS RIGHT JOIN PRODUCTS
+ON PRODUCTS.PRODUCTID = ORDER_DETAILS.PRODUCTID
+LEFT JOIN ORDERS
+ON ORDERS.ORDERID = ORDER_DETILS.ORDERID
+LEFT JOIN EMPLOYEES
+ON EMPLOYEES.EMPLOYEEID = ORDERS.EMPLOYEEID
+ORDER BY PRODUCTS.PRODUCTID DESC [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.expression.Comparison.optimize(Comparison.java:179)
+	at org.h2.command.dml.Select.setEvaluatableRecursive(Select.java:1044)
+	at org.h2.command.dml.Select.preparePlan(Select.java:1022)
+	at org.h2.command.dml.Select.prepare(Select.java:884)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-28 13:47:05 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "NSERT[*] INTO PRODUCTS		
+VALUES (1000, 'Naujas produktas', 1, (SELECT CATEGORYID 
+FROM CATEGORIES 
+WHERE CATEGORYNAME ='Seafood'), '10 per deze', 55.0, 10, 15, 1, 0)"; SQL statement:
+NSERT INTO PRODUCTS		
+VALUES (1000, 'Naujas produktas', 1, (SELECT CATEGORYID 
+FROM CATEGORIES 
+WHERE CATEGORYNAME ='Seafood'), '10 per deze', 55.0, 10, 15, 1, 0) [42000-197]
