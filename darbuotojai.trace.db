@@ -1,0 +1,5 @@
+2018-10-29 15:26:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT COUNT()[*]
+FROM DARBUOTOJAI"; expected "*, DISTINCT, NOT, EXISTS, INTERSECTS"; SQL statement:
+SELECT COUNT()
+FROM DARBUOTOJAI [42001-197]

@@ -574,3 +574,17 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/jonas/
 	at org.h2.mvstore.FileStore.open(FileStore.java:173)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
 	... 20 more
+2018-10-29 15:52:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "B" not found; SQL statement:
+SELECT a.PAVARDE, b.PAVARDE
+FROM VYKDYTOJAI 
+A JOIN B
+ON a.KVALIFIKACIJA  = b.KVALIFIKACIJA 
+WHERE a.NR <> b.NR [42102-197]
+2018-10-29 15:52:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "B" not found; SQL statement:
+SELECT A.PAVARDE, B.PAVARDE
+FROM VYKDYTOJAI 
+A JOIN B
+ON A.KVALIFIKACIJA  = B.KVALIFIKACIJA 
+WHERE A.NR <> B.NR [42102-197]
