@@ -1,0 +1,657 @@
+2018-10-30 09:42:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Invalid use of aggregate function "MIN(COUNT(VIZITAI.ID))"; SQL statement:
+SELECT PACIENTAI .ID , PACIENTAI .VARDAS 
+FROM PACIENTAI 
+JOIN VIZITAI 
+ON PACIENTAI .ID = VIZITAI .PACIENTO_ID
+WHERE MIN(COUNT(VIZITAI .ID )) [90054-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.Aggregate.getValue(Aggregate.java:368)
+	at org.h2.expression.Expression.getBooleanValue(Expression.java:178)
+	at org.h2.table.TableFilter.isOk(TableFilter.java:583)
+	at org.h2.table.TableFilter.next(TableFilter.java:528)
+	at org.h2.command.dml.Select.queryGroup(Select.java:323)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 09:42:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Invalid use of aggregate function "COUNT(VIZITAI.ID)"; SQL statement:
+SELECT PACIENTAI .ID , PACIENTAI .VARDAS 
+FROM PACIENTAI 
+JOIN VIZITAI 
+ON PACIENTAI .ID = VIZITAI .PACIENTO_ID
+WHERE COUNT(VIZITAI .ID ) [90054-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.Aggregate.getValue(Aggregate.java:368)
+	at org.h2.expression.Expression.getBooleanValue(Expression.java:178)
+	at org.h2.table.TableFilter.isOk(TableFilter.java:583)
+	at org.h2.table.TableFilter.next(TableFilter.java:528)
+	at org.h2.command.dml.Select.queryGroup(Select.java:323)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 09:45:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "GYDYTOJAI.VARDAS" must be in the GROUP BY list; SQL statement:
+SELECT GYDYTOJAI .VARDAS , GYDYTOJAI .PAVARDE , COUNT(VIZITAI .ID )
+FROM GYDYTOJAI JOIN VIZITAI 
+ON GYDYTOJAI .ID = VIZITAI .GYDYTOJO_ID [90016-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:172)
+	at org.h2.command.dml.Select.queryGroup(Select.java:350)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 09:56:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO VIZITAI VALUES(13, (SELECT ID FROM GYDYTOJAI WHERE VARDAS = 'Jonas' AND PAVARDE = 'Jonaitis'), 
+
+SELECT ID 
+FROM PACIENTAI 
+WHERE VARDAS = 'Ignas' AND PAVARDE = 'Niežulis'
+
+
+SELECT[*] *
+FROM PACIENTAI"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, GROUP, HAVING, UNION, MINUS, EXCEPT, INTERSECT, ORDER, OFFSET, FETCH, LIMIT, FOR, [, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO VIZITAI VALUES(13, (SELECT ID FROM GYDYTOJAI WHERE VARDAS = 'Jonas' AND PAVARDE = 'Jonaitis'), 
+
+SELECT ID 
+FROM PACIENTAI 
+WHERE VARDAS = 'Ignas' AND PAVARDE = 'Niežulis'
+
+
+SELECT *
+FROM PACIENTAI [42001-197]
+2018-10-30 09:58:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO VIZITAI VALUES(13, (SELECT ID FROM GYDYTOJAI WHERE VARDAS = 'Jonas' AND PAVARDE = 'Jonaitis'), (SELECT ID 
+FROM PACIENTAI WHERE VARDAS = 'Ignas' AND PAVARDE = 'Niežulis'), (SELECT ID FROM PASLAUGOS WHERE PAVADINIMAS = 'Regos patikra'), '2018.10.30', 
+
+SELECT KAINA 
+FROM PASLAUGOS 
+WHERE PAVADINIMAS = 'Regos patikra'
+
+
+SELECT[*] *
+FROM PACIENTAI"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, GROUP, HAVING, UNION, MINUS, EXCEPT, INTERSECT, ORDER, OFFSET, FETCH, LIMIT, FOR, [, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO VIZITAI VALUES(13, (SELECT ID FROM GYDYTOJAI WHERE VARDAS = 'Jonas' AND PAVARDE = 'Jonaitis'), (SELECT ID 
+FROM PACIENTAI WHERE VARDAS = 'Ignas' AND PAVARDE = 'Niežulis'), (SELECT ID FROM PASLAUGOS WHERE PAVADINIMAS = 'Regos patikra'), '2018.10.30', 
+
+SELECT KAINA 
+FROM PASLAUGOS 
+WHERE PAVADINIMAS = 'Regos patikra'
+
+
+SELECT *
+FROM PACIENTAI [42001-197]
+2018-10-30 09:59:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "2018.10.30"; SQL statement:
+INSERT INTO VIZITAI VALUES(13, (SELECT ID FROM GYDYTOJAI WHERE VARDAS = 'Jonas' AND PAVARDE = 'Jonaitis'), (SELECT ID 
+FROM PACIENTAI WHERE VARDAS = 'Ignas' AND PAVARDE = 'Niežulis'), (SELECT ID FROM PASLAUGOS WHERE PAVADINIMAS = 'Regos patikra'), '2018.10.30',
+(SELECT KAINA FROM PASLAUGOS WHERE PAVADINIMAS = 'Regos patikra')) -- (13, (SELECT
+    ID
+FROM PUBLIC.GYDYTOJAI
+    /* PUBLIC.GYDYTOJAI.tableScan */
+    /* scanCount: 6 */
+WHERE (VARDAS = 'Jonas')
+    AND (PAVARDE = 'Jonaitis')), (SELECT
+    ID
+FROM PUBLIC.PACIENTAI
+    /* PUBLIC.PACIENTAI.tableScan */
+    /* scanCount: 6 */
+WHERE (VARDAS = 'Ignas')
+    AND (PAVARDE = STRINGDECODE('Nie\u017eulis'))), (SELECT
+    ID
+FROM PUBLIC.PASLAUGOS
+    /* PUBLIC.PASLAUGOS.tableScan */
+    /* scanCount: 7 */
+WHERE PAVADINIMAS = 'Regos patikra'), '2018.10.30', (SELECT
+    KAINA
+FROM PUBLIC.PASLAUGOS
+    /* PUBLIC.PASLAUGOS.tableScan */
+WHERE PAVADINIMAS = 'Regos patikra')) [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:166)
+	at org.h2.command.dml.Insert.update(Insert.java:134)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+Caused by: java.lang.IllegalArgumentException: 2018.10.30
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+2018-10-30 10:02:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT ID 
+FROM GYDYTOJAI 
+WHERE VARDAS = 'Petras' AND PAVARDE = [*]'Petraitis"""; SQL statement:
+SELECT ID 
+FROM GYDYTOJAI 
+WHERE VARDAS = 'Petras' AND PAVARDE = 'Petraitis" [42000-197]
+2018-10-30 10:02:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT ID 
+FROM GYDYTOJAI 
+WHERE VARDAS = 'Petras' AND PAVARDE = [*]'Petraitis"""; SQL statement:
+SELECT ID 
+FROM GYDYTOJAI 
+WHERE VARDAS = 'Petras' AND PAVARDE = 'Petraitis" [42000-197]
+2018-10-30 10:08:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Invalid use of aggregate function "MIN(COUNT(VIZITAI.PACIENTO_ID))"; SQL statement:
+SELECT PACIENTAI .ID , PACIENTAI .VARDAS 
+FROM PACIENTAI 
+JOIN VIZITAI 
+ON PACIENTAI .ID = VIZITAI .PACIENTO_ID
+WHERE MIN(COUNT(VIZITAI .PACIENTO_ID )) [90054-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.Aggregate.getValue(Aggregate.java:368)
+	at org.h2.expression.Expression.getBooleanValue(Expression.java:178)
+	at org.h2.table.TableFilter.isOk(TableFilter.java:583)
+	at org.h2.table.TableFilter.next(TableFilter.java:528)
+	at org.h2.command.dml.Select.queryGroup(Select.java:323)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 10:08:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Invalid use of aggregate function "COUNT(VIZITAI.PACIENTO_ID)"; SQL statement:
+SELECT PACIENTAI .ID , PACIENTAI .VARDAS 
+FROM PACIENTAI 
+JOIN VIZITAI 
+ON PACIENTAI .ID = VIZITAI .PACIENTO_ID
+WHERE (COUNT(VIZITAI .PACIENTO_ID )) [90054-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.Aggregate.getValue(Aggregate.java:368)
+	at org.h2.expression.Expression.getBooleanValue(Expression.java:178)
+	at org.h2.table.TableFilter.isOk(TableFilter.java:583)
+	at org.h2.table.TableFilter.next(TableFilter.java:528)
+	at org.h2.command.dml.Select.queryGroup(Select.java:323)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 10:09:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT COUNT VIZITAI .[*]PACIENTO_ID 
+FROM VIZITAI"; SQL statement:
+SELECT COUNT VIZITAI .PACIENTO_ID 
+FROM VIZITAI [42000-197]
+2018-10-30 10:10:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT COUNT (VIZITAI .PACIENTO_ID ))[*]
+FROM VIZITAI"; SQL statement:
+SELECT COUNT (VIZITAI .PACIENTO_ID ))
+FROM VIZITAI [42000-197]
+2018-10-30 10:10:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT COUNT VIZITAI .[*]PACIENTO_ID
+FROM VIZITAI"; SQL statement:
+SELECT COUNT VIZITAI .PACIENTO_ID
+FROM VIZITAI [42000-197]
+2018-10-30 10:16:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Schema "A" not found; SQL statement:
+SELECT VARDAS , PAVARDE 
+FROM A.PACIENTAI JOINT B.PACIENTAI 
+WHERE A.PAVARDE = B.PAVARDE [90079-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.getSchema(Parser.java:701)
+	at org.h2.command.Parser.getSchema(Parser.java:707)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1388)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:2138)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2287)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:2133)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:1946)
+	at org.h2.command.Parser.parseSelect(Parser.java:1919)
+	at org.h2.command.Parser.parsePrepared(Parser.java:463)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 10:17:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Schema "A" not found; SQL statement:
+SELECT A.VARDAS , A.PAVARDE 
+FROM A.PACIENTAI JOINT B.PACIENTAI 
+WHERE A.PAVARDE = B.PAVARDE [90079-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.getSchema(Parser.java:701)
+	at org.h2.command.Parser.getSchema(Parser.java:707)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1388)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:2138)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2287)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:2133)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:1946)
+	at org.h2.command.Parser.parseSelect(Parser.java:1919)
+	at org.h2.command.Parser.parsePrepared(Parser.java:463)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 10:17:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Schema "A" not found; SQL statement:
+SELECT A.VARDAS , A.PAVARDE 
+FROM A.PACIENTAI JOINT B.PACIENTAI 
+WHERE A.PAVARDE = B.PAVARDE [90079-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.getSchema(Parser.java:701)
+	at org.h2.command.Parser.getSchema(Parser.java:707)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1388)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:2138)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2287)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:2133)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:1946)
+	at org.h2.command.Parser.parseSelect(Parser.java:1919)
+	at org.h2.command.Parser.parsePrepared(Parser.java:463)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 10:17:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "A" not found; SQL statement:
+SELECT A.VARDAS , A.PAVARDE 
+FROM A AS PACIENTAI JOINT B AS PACIENTAI 
+WHERE A.PAVARDE = B.PAVARDE [42102-197]
+2018-10-30 10:18:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT A.VARDAS , A.PAVARDE 
+FROM PACIENTAI A JOINT[*] PACIENTAI B
+WHERE A.PAVARDE = B.PAVARDE"; SQL statement:
+SELECT A.VARDAS , A.PAVARDE 
+FROM PACIENTAI A JOINT PACIENTAI B
+WHERE A.PAVARDE = B.PAVARDE [42000-197]
+2018-10-30 10:19:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Ambiguous column name "VARDAS"; SQL statement:
+SELECT VARDAS , PAVARDE 
+FROM PACIENTAI A JOIN PACIENTAI B
+WHERE A.PAVARDE = B.PAVARDE [90059-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.mapColumn(ExpressionColumn.java:127)
+	at org.h2.expression.ExpressionColumn.mapColumns(ExpressionColumn.java:97)
+	at org.h2.command.dml.Select.mapColumns(Select.java:1237)
+	at org.h2.command.dml.Select.init(Select.java:826)
+	at org.h2.command.Parser.parseSelect(Parser.java:1925)
+	at org.h2.command.Parser.parsePrepared(Parser.java:463)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 10:23:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Invalid use of aggregate function "COUNT(PAVARDE)"; SQL statement:
+SELECT VARDAS 
+FROM PACIENTAI 
+WHERE COUNT (PAVARDE )>2 [90054-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.Aggregate.getValue(Aggregate.java:368)
+	at org.h2.expression.Comparison.getValue(Comparison.java:239)
+	at org.h2.expression.Expression.getBooleanValue(Expression.java:178)
+	at org.h2.command.dml.Select.isConditionMet(Select.java:312)
+	at org.h2.command.dml.Select.queryGroup(Select.java:325)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:628)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:114)
+	at org.h2.command.dml.Query.query(Query.java:371)
+	at org.h2.command.dml.Query.query(Query.java:333)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:114)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:227)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 10:43:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Ambiguous column name "PACIENTO_ID"; SQL statement:
+SELECT PACIENTAI .ID , PACIENTAI .VARDAS
+FROM (PACIENTAI JOIN VIZITAI) LEFT JOIN VIZITAI
+ON PACIENTAI .ID =VIZITAI .PACIENTO_ID [90059-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.mapColumn(ExpressionColumn.java:127)
+	at org.h2.expression.ExpressionColumn.mapColumns(ExpressionColumn.java:97)
+	at org.h2.expression.Comparison.mapColumns(Comparison.java:512)
+	at org.h2.table.TableFilter$MapColumnsVisitor.accept(TableFilter.java:1228)
+	at org.h2.table.TableFilter.visit(TableFilter.java:1182)
+	at org.h2.table.TableFilter.addJoin(TableFilter.java:669)
+	at org.h2.command.Parser.addJoin(Parser.java:1857)
+	at org.h2.command.Parser.readJoin(Parser.java:1774)
+	at org.h2.command.Parser.parseJoinTableFilter(Parser.java:2183)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:2139)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2287)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:2133)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:1946)
+	at org.h2.command.Parser.parseSelect(Parser.java:1919)
+	at org.h2.command.Parser.parsePrepared(Parser.java:463)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 10:44:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Ambiguous column name "PACIENTO_ID"; SQL statement:
+SELECT PACIENTAI .ID , PACIENTAI .VARDAS
+FROM (PACIENTAI JOIN VIZITAI) LEFT JOIN VIZITAI
+ON PACIENTAI .ID =VIZITAI .PACIENTO_ID [90059-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.mapColumn(ExpressionColumn.java:127)
+	at org.h2.expression.ExpressionColumn.mapColumns(ExpressionColumn.java:97)
+	at org.h2.expression.Comparison.mapColumns(Comparison.java:512)
+	at org.h2.table.TableFilter$MapColumnsVisitor.accept(TableFilter.java:1228)
+	at org.h2.table.TableFilter.visit(TableFilter.java:1182)
+	at org.h2.table.TableFilter.addJoin(TableFilter.java:669)
+	at org.h2.command.Parser.addJoin(Parser.java:1857)
+	at org.h2.command.Parser.readJoin(Parser.java:1774)
+	at org.h2.command.Parser.parseJoinTableFilter(Parser.java:2183)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:2139)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2287)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:2133)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:1946)
+	at org.h2.command.Parser.parseSelect(Parser.java:1919)
+	at org.h2.command.Parser.parsePrepared(Parser.java:463)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 10:45:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Ambiguous column name "PACIENTO_ID"; SQL statement:
+SELECT PACIENTAI .ID , PACIENTAI .VARDAS
+FROM (PACIENTAI JOIN VIZITAI) LEFT JOIN VIZITAI
+ON PACIENTAI .ID =VIZITAI .PACIENTO_ID 
+AND  VIZITAI .PACIENTO_ID IS NULL [90059-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.mapColumn(ExpressionColumn.java:127)
+	at org.h2.expression.ExpressionColumn.mapColumns(ExpressionColumn.java:97)
+	at org.h2.expression.Comparison.mapColumns(Comparison.java:512)
+	at org.h2.expression.ConditionAndOr.mapColumns(ConditionAndOr.java:260)
+	at org.h2.table.TableFilter$MapColumnsVisitor.accept(TableFilter.java:1228)
+	at org.h2.table.TableFilter.visit(TableFilter.java:1182)
+	at org.h2.table.TableFilter.addJoin(TableFilter.java:669)
+	at org.h2.command.Parser.addJoin(Parser.java:1857)
+	at org.h2.command.Parser.readJoin(Parser.java:1774)
+	at org.h2.command.Parser.parseJoinTableFilter(Parser.java:2183)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:2139)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2287)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:2133)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:1946)
+	at org.h2.command.Parser.parseSelect(Parser.java:1919)
+	at org.h2.command.Parser.parsePrepared(Parser.java:463)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 10:45:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Ambiguous column name "PACIENTO_ID"; SQL statement:
+SELECT PACIENTAI .ID , PACIENTAI .VARDAS
+FROM (PACIENTAI JOIN VIZITAI) LEFT JOIN VIZITAI
+ON PACIENTAI .ID =VIZITAI .PACIENTO_ID [90059-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.mapColumn(ExpressionColumn.java:127)
+	at org.h2.expression.ExpressionColumn.mapColumns(ExpressionColumn.java:97)
+	at org.h2.expression.Comparison.mapColumns(Comparison.java:512)
+	at org.h2.table.TableFilter$MapColumnsVisitor.accept(TableFilter.java:1228)
+	at org.h2.table.TableFilter.visit(TableFilter.java:1182)
+	at org.h2.table.TableFilter.addJoin(TableFilter.java:669)
+	at org.h2.command.Parser.addJoin(Parser.java:1857)
+	at org.h2.command.Parser.readJoin(Parser.java:1774)
+	at org.h2.command.Parser.parseJoinTableFilter(Parser.java:2183)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:2139)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2287)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:2133)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:1946)
+	at org.h2.command.Parser.parseSelect(Parser.java:1919)
+	at org.h2.command.Parser.parsePrepared(Parser.java:463)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 10:46:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Ambiguous column name "PACIENTO_ID"; SQL statement:
+SELECT PACIENTAI .ID , PACIENTAI .VARDAS
+FROM (PACIENTAI JOIN VIZITAI) LEFT JOIN VIZITAI
+ON PACIENTAI .ID = VIZITAI .PACIENTO_ID [90059-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.mapColumn(ExpressionColumn.java:127)
+	at org.h2.expression.ExpressionColumn.mapColumns(ExpressionColumn.java:97)
+	at org.h2.expression.Comparison.mapColumns(Comparison.java:512)
+	at org.h2.table.TableFilter$MapColumnsVisitor.accept(TableFilter.java:1228)
+	at org.h2.table.TableFilter.visit(TableFilter.java:1182)
+	at org.h2.table.TableFilter.addJoin(TableFilter.java:669)
+	at org.h2.command.Parser.addJoin(Parser.java:1857)
+	at org.h2.command.Parser.readJoin(Parser.java:1774)
+	at org.h2.command.Parser.parseJoinTableFilter(Parser.java:2183)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:2139)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2287)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:2133)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:1946)
+	at org.h2.command.Parser.parseSelect(Parser.java:1919)
+	at org.h2.command.Parser.parsePrepared(Parser.java:463)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2018-10-30 10:47:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Ambiguous column name "PACIENTO_ID"; SQL statement:
+SELECT PACIENTAI .ID , PACIENTAI .VARDAS
+FROM (PACIENTAI JOIN VIZITAI) LEFT JOIN VIZITAI
+ON VIZITAI .PACIENTO_ID = PACIENTAI .ID [90059-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.mapColumn(ExpressionColumn.java:127)
+	at org.h2.expression.ExpressionColumn.mapColumns(ExpressionColumn.java:97)
+	at org.h2.expression.Comparison.mapColumns(Comparison.java:510)
+	at org.h2.table.TableFilter$MapColumnsVisitor.accept(TableFilter.java:1228)
+	at org.h2.table.TableFilter.visit(TableFilter.java:1182)
+	at org.h2.table.TableFilter.addJoin(TableFilter.java:669)
+	at org.h2.command.Parser.addJoin(Parser.java:1857)
+	at org.h2.command.Parser.readJoin(Parser.java:1774)
+	at org.h2.command.Parser.parseJoinTableFilter(Parser.java:2183)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:2139)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2287)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:2133)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:1946)
+	at org.h2.command.Parser.parseSelect(Parser.java:1919)
+	at org.h2.command.Parser.parsePrepared(Parser.java:463)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Thread.java:844)
